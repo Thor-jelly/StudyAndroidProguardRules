@@ -267,10 +267,16 @@ android {
 }
 
 #保留Keep注解的类名和方法
--keep,allowobfuscation @interface android.support.annotation.Keep
--keep @android.support.annotation.Keep class *
--keepclassmembers class * {
-    @android.support.annotation.Keep *;
+-keep class android.support.annotation.Keep
+-keep @android.support.annotation.Keep class * {*;}
+-keepclasseswithmembers class * {
+    @android.support.annotation.Keep <methods>;
+}
+-keepclasseswithmembers class * {
+    @android.support.annotation.Keep <fields>;
+}
+-keepclasseswithmembers class * {
+    @android.support.annotation.Keep <init>(...);
 }
 
 #第三方jar包不被混淆
